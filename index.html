@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>硬體極速擂台：電腦架構 3D 賽車</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入 Three.js 函式庫 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="bg-slate-900 text-white overflow-hidden select-none">
+
+  <!-- 3D 渲染畫布容器 -->
+  <div id="game-container" class="absolute inset-0"></div>
+
+  <!-- 頂部硬體狀態 HUD -->
+  <header class="absolute top-4 left-4 right-4 flex justify-between pointer-events-none">
+    <div class="bg-slate-800/80 backdrop-blur p-4 rounded-xl border border-slate-700 shadow-lg space-y-2 w-80">
+      <h2 class="text-sm font-bold tracking-wider text-cyan-400">電腦規格狀態 (PC SPEC)</h2>
+      
+      <!-- CPU 狀態 -->
+      <div>
+        <div class="flex justify-between text-xs mb-1">
+          <span>CPU 時脈 (運算速度)</span>
+          <span id="cpu-stat" class="font-mono text-emerald-400">2.4 GHz</span>
+        </div>
+        <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+          <div id="cpu-bar" class="bg-emerald-500 h-full w-[40%] transition-all"></div>
+        </div>
+      </div>
+
+      <!-- RAM 狀態 -->
+      <div>
+        <div class="flex justify-between text-xs mb-1">
+          <span>RAM 快取 (賽道緩衝區)</span>
+          <span id="ram-stat" class="font-mono text-amber-400">4 / 16 GB</span>
+        </div>
+        <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+          <div id="ram-bar" class="bg-amber-500 h-full w-[25%] transition-all"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 教學彈窗提示 -->
+    <div id="knowledge-card" class="bg-indigo-900/90 border border-indigo-500 p-4 rounded-xl max-w-sm hidden">
+      <h3 id="hw-title" class="font-bold text-lg text-indigo-200 mb-1">硬體知識點</h3>
+      <p id="hw-desc" class="text-sm text-slate-200 leading-relaxed"></p>
+    </div>
+  </header>
+
+  <!-- 賽車控制與遊戲主程式 -->
+  <script type="module" src="game.js"></script>
+</body>
+</html>
